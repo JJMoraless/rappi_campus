@@ -1,25 +1,26 @@
 {
   "name": "rappi_campus",
   "version": "1.0.0",
-  "description": "Rappi es una plataforma de entrega a domicilio y servicios en línea que ofrece una amplia gama de funcionalidades para facilitar la vida de sus usuarios",
-  "main": "index.js",
+  "description": "Rappi es una plataforma de entrega a domicilio y servicios en línea que ofrece una amplia gama de funcionalidades para facilitar la vida de sus usuarios.  algunas de las funcionalidades principales de Rappi:",
+  "main": "./src/app.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon ./src/index.js",
-    "start": "node ./src/index.js"
+    "dev": "nodemon --quiet ./src/app.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.18.2",
-    "mongodb": "^5.7.0"
+    "dotenv": "16.3.1",
+    "express": "4.18.2",
+    "express-rate-limit": "6.9.0",
+    "jose": "4.14.4",
+    "mongodb": "5.8.1",
+    "passport": "0.6.0",
+    "passport-http-bearer": "1.0.1",
+    "zod": "3.22.2"
   },
   "devDependencies": {
-    "dotenv": "^16.3.1",
-    "morgan": "^1.10.0",
-    "nodemon": "^3.0.1"
+    "nodemon": "3.0.1"
   }
 }
