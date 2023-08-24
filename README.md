@@ -36,3 +36,13 @@ Rappi es una plataforma de entrega a domicilio y servicios en línea que ofrece 
 - https://merchants.rappi.com/es-co
 
 ---
+
+
+
+1. crear estructura de carpetas para el proyecto OK
+2. instalar dependencias OK 
+3. definir base de datos 
+4. Crear esquema para recibir los datos 
+5. ingresar datos para pruebas
+6. conectar con atlas
+7. crear rutas para CRUD en colecciones de base de datos
