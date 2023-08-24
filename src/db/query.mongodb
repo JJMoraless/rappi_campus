@@ -1,0 +1,200 @@
+use("rappi_campus");
+db.createCollection("repartidor", {
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: [
+                "nombre",
+                "telefono",
+                "vehiculo",
+                "disponible",
+                "ubicacion"
+            ],
+            properties: {
+                nombre: {
+                    bsonType: "string",
+                    description: "Nombre del repartidor"
+                },
+                telefono: {
+                    bsonType: "string",
+                    description: "Teléfono del repartidor"
+                },
+                vehiculo: {
+                    bsonType: "string",
+                    enum: ["bicicleta", "motocicleta", "automóvil"],
+                    description: "Tipo de vehículo del repartidor"
+                },
+                disponible: {
+                    bsonType: "bool",
+                    description: "Disponibilidad del repartidor"
+                },
+                ubicacion: {
+                    bsonType: "object",
+                    required: ["type", "coordinates"],
+                    properties: {
+                        type: {
+                            bsonType: "string",
+                            enum: ["Point"],
+                            description: "Tipo de ubicación"
+                        },
+                        coordinates: {
+                            bsonType: "array",
+                            description: "Coordenadas de la ubicación",
+                            items: {
+                                bsonType: "double"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+});
+
+db.createCollection("restaurante", {
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: [
+                "nombre",
+                "direccion",
+                "categoria",
+                "ubicacion"
+            ],
+            properties: {
+                nombre: {
+                    bsonType: "string",
+                    description: "Nombre del restaurante"
+                },
+                direccion: {
+                    bsonType: "string",
+                    description: "Dirección del restaurante"
+                },
+                categoria: {
+                    bsonType: "string",
+                    description: "Categoría del restaurante"
+                },
+                ubicacion: {
+                    bsonType: "object",
+                    required: ["type", "coordinates"],
+                    properties: {
+                        type: {
+                            bsonType: "string",
+                            enum: ["Point"],
+                            description: "Tipo de ubicación"
+                        },
+                        coordinates: {
+                            bsonType: "array",
+                            description: "Coordenadas de la ubicación",
+                            items: {
+                                bsonType: "double"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+});
+
+db.createCollection("producto", {
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: [
+                "nombre",
+                "descripcion",
+                "precio",
+                "restaurante"
+            ],
+            properties: {
+                nombre: {
+                    bsonType: "string",
+                    description: "Nombre del producto"
+                },
+                descripcion: {
+                    bsonType: "string",
+                    description: "Descripción del producto"
+                },
+                precio: {
+                    bsonType: "decimal",
+                    description: "Precio del producto"
+                },
+                restaurante: {
+                    bsonType: "objectId",
+                    description: "ID del restaurante asociado al producto"
+                }
+            }
+        }
+    }
+});
+
+db.createCollection("cliente", {
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: [
+                "nombre",
+                "telefono",
+                "direccion",
+                "email"
+            ],
+            properties: {
+                nombre: {
+                    bsonType: "string",
+                    description: "Nombre del cliente"
+                },
+                telefono: {
+                    bsonType: "string",
+                    description: "Teléfono del cliente"
+                },
+                direccion: {
+                    bsonType: "string",
+                    description: "Dirección del cliente"
+                },
+                email: {
+                    bsonType: "string",
+                    description: "Correo electrónico del cliente"
+                }
+            }
+        }
+    }
+});
+
+db.createCollection("pedido", {
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: [
+                "cliente",
+                "productos",
+                "total",
+                "estado"
+            ],
+            properties: {
+                cliente: {
+                    bsonType: "objectId",
+                    description: "ID del cliente que hizo el pedido"
+                },
+                productos: {
+                    bsonType: "array",
+                    description: "Lista de productos en el pedido",
+                    items: {
+                        bsonType: "objectId"
+                    }
+                },
+                total: {
+                    bsonType: "decimal",
+                    description: "Total del pedido"
+                },
+                estado: {
+                    bsonType: "string",
+                    enum: ["pendiente", "en_proceso", "entregado"],
+                    description: "Estado actual del pedido"
+                }
+            }
+        }
+    }
+});
+
+
